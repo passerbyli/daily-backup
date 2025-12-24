@@ -1,0 +1,13 @@
+packages:
+  - 'front-end/**'
+  - 'back-end/**'
+  - 'shared/**'
+  - 'shared-ui/**'
+  - 'shared-utils/**'
+  - 'shared-types/**'
+  - 'shared-hooks/**'
+  - 'shared-components/**'
+  - 'shared-services/**'
+  - 'shared-models/**'
+  - 'shared-repositories/**'
+  - 'shared-services/**'
