@@ -1,0 +1,7 @@
+# 排除不需要检查的文件
+
+dist
+node_modules
+public
+.local
+pnpm-lock.yaml
