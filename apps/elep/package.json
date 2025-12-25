@@ -1,20 +1,34 @@
 {
   "name": "elep",
+  "description": "electron 项目",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:mac": "nodemon --exec NODE_ENV=development electron .  --watch ./ --ext .js",
+    "startAll": "concurrently \"pnpm run dev\" \"pnpm run start:mac\"",
+    "release:mac": "electron-builder --mac --arm64 --publish always"
   },
   "dependencies": {
+    "electron-log": "^5.4.3",
+    "electron-reload": "2.0.0-alpha.1",
+    "electron-store": "^11.0.2",
+    "electron-updater": "^6.6.2",
+    "element-plus": "^2.13.0",
     "vue": "^3.5.24"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "concurrently": "^9.2.1",
+    "electron": "^29.4.6",
+    "electron-builder": "^24.13.3",
+    "electron-icon-builder": "2.0.1",
+    "nodemon": "^3.1.11",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
     "vue-tsc": "^3.1.4"

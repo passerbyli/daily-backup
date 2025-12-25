@@ -1,0 +1,90 @@
+appId: com.example.elep
+productName: elep
+copyright: Copyright © 2025 YourName
+
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - filter:
+      - electron/**/*
+      - pages/**/*
+      - plugins/**/*
+      - public
+      - preload.js
+      - main.js
+      - package.json
+      - '!**/node_modules/**'
+      - '!**/.pnpm/**'
+      - '!**/.turbo/**'
+      - '!**/.cache/**'
+      - '!**/dist/**'
+      - '!**/out/**'
+      - '!**/build/**'       # buildResources 用 directories.buildResources 处理，不要塞进 app
+      - '!**/.git/**'
+      - '!**/*.map'
+
+asar: true
+
+extraResources:
+  - from: public
+    to: public
+    filter:
+      - '**/*'
+
+# ===== Windows =====
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: "${productName}-Setup-${version}-${arch}.${ext}"
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: "${productName}"
+
+# 可选：提升兼容性（不想强制管理员就别开）
+# requestedExecutionLevel: "asInvoker"
+
+# ===== macOS =====
+mac:
+  bundleIdentifier: com.example.elep
+  target:
+    - target: zip   # ✅ electron-updater 需要（自动更新用）
+      arch: [arm64]
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+
+dmg:
+  background: null
+  contents:
+    - x: 130
+      y: 220
+      type: file
+      path: elep.app
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+
+
+# ===== 更新相关 =====
+# 不在这里写 publish，改为运行时 setFeedURL 指向内网 express 的 /win/ 或 /mac/
+
+publish:
+  - provider: generic
+    url: "http://127.0.0.1/placeholder"
+
+# ===== 其他常用项（可按需删改）=====
+compression: maximum
+
+# 生成一些更通用的包名/兼容行为
+npmRebuild: false
+buildDependenciesFromSource: false

@@ -1,0 +1,3 @@
+asar
+elep
+nsis
