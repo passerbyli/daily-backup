@@ -3,19 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs.cjs,css,less,scss,vue,html,md}\"",
+    "eslint": "eslint",
+    "spellcheck": "cspell lint \"(packages|apps)/**/*.{ts,tsx,js,jsx,mjs,cjs,css,less,scss,vue,html,md}\"",
+    "commit": "git-cz",
+    "prepare": "husky",
+    "build": "node ./scripts/build.js",
+    "dev": "node ./scripts/dev.js"
+  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-git"
     }
-  },
-  "scripts": {
-    "build": "node ./scripts/build.js",
-    "dev": "node ./scripts/dev.js",
-    "commit": "git-cz",
-    "spellcheck": "cspell lint \"(packages|apps)/**/*.{ts,tsx,js,jsx,mjs,cjs,css,less,scss,vue,html,md}\"",
-    "eslint": "eslint",
-    "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs.cjs,css,less,scss,vue,html,md}\"",
-    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
