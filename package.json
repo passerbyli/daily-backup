@@ -17,6 +17,7 @@
       "path": "node_modules/cz-git"
     }
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
