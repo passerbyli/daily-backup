@@ -7,3 +7,5 @@ node_modules
 public
 .local
 pnpm-lock.yaml
+.DS_Store
+apps/elep/pages

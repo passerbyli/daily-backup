@@ -1,5 +1,5 @@
 appId: com.example.elep
-productName: elep
+productName: elep-desktop
 copyright: Copyright © 2025 YourName
 
 
@@ -16,13 +16,12 @@ files:
       - preload.js
       - main.js
       - package.json
-      - '!**/node_modules/**'
       - '!**/.pnpm/**'
       - '!**/.turbo/**'
       - '!**/.cache/**'
-      - '!**/dist/**'
-      - '!**/out/**'
-      - '!**/build/**'       # buildResources 用 directories.buildResources 处理，不要塞进 app
+      - '!dist/**'
+      - '!out/**'
+      - '!build/**'       # buildResources 用 directories.buildResources 处理，不要塞进 app
       - '!**/.git/**'
       - '!**/*.map'
 
@@ -55,7 +54,7 @@ nsis:
 
 # ===== macOS =====
 mac:
-  bundleIdentifier: com.example.elep
+  appId: com.example.elep
   target:
     - target: zip   # ✅ electron-updater 需要（自动更新用）
       arch: [arm64]
@@ -67,7 +66,7 @@ dmg:
     - x: 130
       y: 220
       type: file
-      path: elep.app
+      path: elep-desktop.app
     - x: 410
       y: 220
       type: link
@@ -83,7 +82,7 @@ publish:
     url: "http://127.0.0.1/placeholder"
 
 # ===== 其他常用项（可按需删改）=====
-compression: maximum
+compression: normal
 
 # 生成一些更通用的包名/兼容行为
 npmRebuild: false

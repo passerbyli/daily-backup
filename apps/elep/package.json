@@ -1,8 +1,12 @@
 {
-  "name": "elep",
+  "name": "elep-desktop",
   "description": "electron 项目",
+  "author": {
+    "name": "你的名字",
+    "email": "you@example.com"
+  },
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "main.js",
   "scripts": {
     "dev": "vite",
@@ -10,7 +14,8 @@
     "preview": "vite preview",
     "start:mac": "nodemon --exec NODE_ENV=development electron .  --watch ./ --ext .js",
     "startAll": "concurrently \"pnpm run dev\" \"pnpm run start:mac\"",
-    "release:mac": "electron-builder --mac --arm64 --publish always"
+    "release:mac": "electron-builder --mac --arm64 --publish always",
+    "releaseAll": "pnpm run build && pnpm run release:mac"
   },
   "dependencies": {
     "electron-log": "^5.4.3",
@@ -32,6 +37,7 @@
     "nodemon": "^3.1.11",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
+    "vite-plugin-vue-devtools": "^7.7.2",
     "vue-tsc": "^3.1.4"
   }
 }
