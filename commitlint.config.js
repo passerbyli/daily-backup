@@ -1,36 +1,42 @@
 /** @type {import('cz-git').UserConfig} */
+// 文件用于配置 commitlint 工具，它用于规范化 Git 提交消息格式。
+// @see: https://cz-git.qbenben.com/zh/guide
 
 export default {
-  extends: ["@commitlint/config-conventional"],
+  /* 一个字符串数组，用于指定对应的 commitlint 配置扩展文件（使用了 “@commitlint/config-conventional” 扩展，它是一个常用的提交消息规范） */
+  extends: ['@commitlint/config-conventional'],
+  /* 一组规则用于校验提交消息的格式 */
   rules: {
     // @see: http://commitlint.js.org/#/reference-rules
-    "body-leading-blank": [2, "always"],
-    "footer-leading-blank": [1, "always"],
-    "header-max-length": [2, "always", 108],
-    "subject-empty": [2, "never"],
-    "type-empty": [2, "never"],
-    "subject-case": [0],
-    "type-enum": [
+    'body-leading-blank': [2, 'always'], // 规定提交消息的正文部分之前是否需要空行，配置为 [2, "always"] 表示必须要有空行。
+    'footer-leading-blank': [1, 'always'], // 规定提交消息的尾部部分之前是否需要空行，配置为 [1, "always"] 表示应该有空行。
+    'header-max-length': [2, 'always', 108], // 规定提交消息头部的最大长度，配置为 [2, "always", 108] 表示最大长度为 108。
+    'subject-empty': [2, 'never'], // 规定提交消息的主题部分是否允许为空，配置为 [2, "never"] 表示主题不能为空。
+    'type-empty': [2, 'never'], //  规定提交消息的类型部分是否允许为空，配置为 [2, "never"] 表示类型不能为空。
+    'subject-case': [0], // 规定提交消息的主题部分的大小写，配置为 [0] 表示不强制大小写。
+    'type-enum': [
+      // 规定提交消息的类型部分的取值范围，配置为 [2, "always", [类型列表]]，其中类型列表包含了规定的若干提交类型。
       2,
-      "always",
+      'always',
       [
-        "feat", // 新功能
-        "fix", // 修复bug
-        "docs", // 文档
-        "style", // 样式
-        "refactor", // 重构
-        "test", // 测试
-        "chore", // 构建过程或辅助工具的变动
-        "revert",
-        "ci",
-        "chore",
-        "wip",
-        "workflow",
-        "types",
-        "release",
+        'feat', // 新功能
+        'fix', // 修复bug
+        'docs', // 文档
+        'style', // 样式
+        'refactor', // 重构
+        'test', // 测试
+        'chore', // 构建过程或辅助工具的变动
+        'revert',
+        'ci',
+        'chore',
+        'wip',
+        'workflow',
+        'types',
+        'release',
       ],
     ],
   },
+  /* 提交过程中向用户提问时使用的各种提示信息 */
   prompt: {
     types: [
       {

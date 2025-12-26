@@ -1,7 +1,6 @@
 #.gitignore
 
 # Node
-
 node_modules/
 dist/
 build/
@@ -19,3 +18,10 @@ pnpm-debug.log
 *.suo
 *.sln
 *.sw?
+yarn.lock
+
+pnpm-lock.yaml
+.DS_Store
+obj
+target
+bin

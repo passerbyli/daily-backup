@@ -1,9 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "types": [
-            ""
-        ],
+        "types": [],
         "target": "esnext",
         "module": "esnext",
         "lib": [

@@ -3,6 +3,7 @@ import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintPluginVue from "eslint-plugin-vue";
+import globals from "globals";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 const ignores = [
@@ -13,11 +14,18 @@ const ignores = [
   "scripts/**",
   "**/*.d.tsx",
 ];
+// 按需调整你的前后端目录（我按你之前的 apps 结构写了更常见的路径）
+const frontendGlobs = [
+  "apps/frontend/**/*.{js,ts,jsx,tsx,vue}",
+  "packages/components/**/*.{js,ts,jsx,tsx,vue}",
+];
+const backendGlobs = ["apps/backend/**/*.{js,ts}"];
 
 export default defineConfig([
   // 通用配置
   {
     ignores,
+    files: ["**/*.{js,cjs,mjs,ts,tsx,jsx,vue}"],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
@@ -32,34 +40,54 @@ export default defineConfig([
       parser: tseslint.parser,
     },
     rules: {
-      "no-var": "error", // 禁止使用 var
+      "@typescript-eslint/no-require-imports": "off",
+      "no-var": "error",
+      "prettier/prettier": "warn",
+    },
+    globals: {
+      console: "readonly",
     },
   },
 
   // 前端配置
   {
     ignores,
-    files: [
-      "app/frontend/**/*.{js,ts,jsx,tsx,vue}",
-      "packages/components/**/*.{js,ts,jsx,tsx,vue}",
-    ],
+    files: frontendGlobs,
     exports: [
       ...eslintPluginVue.configs["flat/recommended"],
       eslintConfigPrettier,
     ],
     languageOptions: {
-      global: {
-        ...globalThis.browser,
+      parserOptions: {
+        sourceType: "module",
+      },
+      globals: {
+        ...globals.browser,
+        // 若前端代码里用到了 process.env，声明为只读即可避免 no-undef
+        process: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
       },
     },
+    // rules: {
+    //   "@typescript-eslint/no-unused-expressions": [
+    //     "error",
+    //     {
+    //       allowShortCircuit: true, // 允许 a && b()
+    //       allowTernary: true, // 允许 a ? b() : c()
+    //       allowTaggedTemplates: true, // 允许标签模板
+    //     },
+    //   ],
+    //   // 这里可以放你的 Vue 规则
+    // },
   },
   // 后端配置
   {
     ignores,
-    files: ["app/backend/**/*.{js,ts}"],
+    files: backendGlobs,
     languageOptions: {
-      global: {
-        ...globalThis.node,
+      globals: {
+        ...globals.node,
       },
     },
   },

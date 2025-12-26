@@ -1,5 +1,7 @@
 # 排除不需要检查的文件
 
+# !.prettierignore
+# !.prettierrc.js
 dist
 node_modules
 public

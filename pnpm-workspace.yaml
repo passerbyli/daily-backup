@@ -1,5 +1,12 @@
 packages:
-  - apps/**
+  - packages/*
+  - apps/elep/*
+  - apps/*
+
+ignoredBuiltDependencies:
+  - esbuild
+  - phantomjs-prebuilt
+  - vue-demi
 
 onlyBuiltDependencies:
-  - esbuild
+  - electron
